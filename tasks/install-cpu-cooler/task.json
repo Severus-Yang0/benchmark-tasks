@@ -1,0 +1,21 @@
+{
+  "title": "Install a clip-on CPU cooler: set it on the processor, hook both clip ends over the socket's lugs, lock the cam lever",
+  "category": "Impact on jobs",
+  "keywords": [
+    "computer assembly",
+    "bimanual",
+    "spring clip",
+    "cam lever",
+    "placement",
+    "pressing"
+  ],
+  "instruction": "Install the CPU cooler on the processor. Set it on the processor, press each end of its clip down until it hooks over the lug, then push the lever over and down until it locks.",
+  "context": "Boxed AMD coolers and many budget coolers mount this way: a steel clip across the heatsink hooks a lug at each end of the socket's retention frame, and a cam lever on one end pulls it tight. Assemblers and repair technicians fit thousands of them; a clip end left unhooked or a lever left up leaves the cooler loose on the processor.",
+  "setup": "Left and right are the robot's. Positions are in metres from the midpoint between the two arm bases: x forward, y to the robot's left; heights are above the table top. Motherboard: an ATX board (305 x 244 mm, 1.6 mm black PCB with memory slots, VRM heatsinks, M.2 heatsinks and an x16 slot), lying flat on the table and fixed to it, its long side along y, centred at (0.282, -0.064). Its CPU socket is at (0.290, 0.000) with a processor in it (top 9.7 mm above the table). Around the socket a black plastic retention frame 62 x 98 mm (x by y) has a lug on each end face, at y = +0.049 and -0.049: 6 mm wide (x), sticking out 4 mm (along y), its flat underside 5.0 mm above the table and its top sloping from 9.0 mm at the frame down to 6.5 mm at its tip. Cooler (0.36 kg, 88 x 84 x 65 mm without the clip): a 40 x 40 mm copper base 1.5 mm thick with a grey thermal pad under it, an 88 x 84 x 38.5 mm aluminium fin block with two 6 mm copper heat pipes up its sides, and a 76 x 76 x 22 mm black plastic fan cover on top with a 66 mm fan. A steel clip runs across its middle along y; each end bends down into a leg (18 mm wide, 1.2 mm thick) 50.5 mm from the cooler's centre, with a 12 x 5.3 mm window near its bottom, and at its top a press tab reaching 9 mm out. Each leg is sprung up and can flex outward. On the right end a black lever (32 x 8 x 4 mm, grooved grip) turns on a pin 21 mm beyond the leg, 38 mm above the cooler's base, in the plane of the leg; it leans 25 degrees towards +x, unlocked. The cooler stands on a 40 x 40 x 15 mm dark grey foam block at (0.290, 0.200), the clip along y with the lever on the right, legs hanging free beside the block.",
+  "scoring": "Judged at the end of the episode from top and side photos, plus a look at each clip end. Seated: the cooler's base on the processor, its centre within 3 mm of the processor's, square with the socket within 5 degrees (the clip along y), tilted less than 3 degrees, base within 1.5 mm of the processor's top. Released: no part of the robot touches the cooler. A clip end is hooked when its lug shows through the leg's window and the leg hangs straight (within 1.5 degrees), pulled up against the lug's underside. Locked: the lever has gone over the top and lies flat along -x. 0 if the cooler is not seated or not released. 0.25: seated and released. 0.5: and one clip end hooked. 0.75: and both clip ends hooked. 1.0 (success, held for 1 s): and the lever locked. Possible scores: 0, 0.25, 0.5, 0.75, 1.0.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "reset_notes": "Push the lever back up to lean 25 degrees towards +x, press each clip end's tab down and pull its leg out off its lug, lift the cooler off and stand it on the foam block, clip along y, lever on the right.",
+  "fidelity": "Rigid bodies, 240 Hz physics, 20 Hz control; board fixed. Each clip leg slides on a spring (600 N/m) and flexes outward on another; pressing a tab down rides it over its lug (about 6 mm). The lever's over-centre spring and cam pull the clip tighter as it locks. The clip's bending, fins and fan are simplified; no thermal contact is simulated.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-GT7A87"
+}
