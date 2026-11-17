@@ -1,0 +1,2327 @@
+#usda 1.0
+(
+    defaultPrim = "Floor"
+    kilogramsPerUnit = 1
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Floor" (
+    prepend apiSchemas = ["PhysicsRigidBodyAPI", "MaterialBindingAPI"]
+)
+{
+    rel material:binding:physics = </Floor/Material> (
+        bindMaterialAs = "weakerThanDescendants"
+    )
+    bool physics:kinematicEnabled = 1
+
+    def "visual"
+    {
+        def Cube "housing"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.1, 0.07, 0.0245)
+            double3 xformOp:translate = (0, 0, 0.01225)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell0"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.046, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell1"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.0057, 0.0005)
+            double3 xformOp:translate = (-0.046, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell2"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.0056, 0.0005)
+            double3 xformOp:translate = (-0.046, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell3"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.00475, 0.0005)
+            double3 xformOp:translate = (-0.046, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell4"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.0079, 0.0005)
+            double3 xformOp:translate = (-0.046, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell5"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.01605, 0.0005)
+            double3 xformOp:translate = (-0.046, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell6"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.046, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell7"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.0358, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell8"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.0057, 0.0005)
+            double3 xformOp:translate = (-0.0358, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell9"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.0056, 0.0005)
+            double3 xformOp:translate = (-0.0358, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell10"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.00475, 0.0005)
+            double3 xformOp:translate = (-0.0358, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell11"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.0079, 0.0005)
+            double3 xformOp:translate = (-0.0358, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell12"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.01605, 0.0005)
+            double3 xformOp:translate = (-0.0358, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell13"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.0358, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell14"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.02835, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell15"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0057, 0.0005)
+            double3 xformOp:translate = (-0.02835, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell16"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0056, 0.0005)
+            double3 xformOp:translate = (-0.02835, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell17"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.00475, 0.0005)
+            double3 xformOp:translate = (-0.02835, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell18"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.01605, 0.0005)
+            double3 xformOp:translate = (-0.02835, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell19"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.02835, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell20"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.02595, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell21"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0057, 0.0005)
+            double3 xformOp:translate = (-0.02595, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell22"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0056, 0.0005)
+            double3 xformOp:translate = (-0.02595, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell23"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.00475, 0.0005)
+            double3 xformOp:translate = (-0.02595, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell24"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0079, 0.0005)
+            double3 xformOp:translate = (-0.02595, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell25"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.01605, 0.0005)
+            double3 xformOp:translate = (-0.02595, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell26"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.02595, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell27"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.022, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell28"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.0057, 0.0005)
+            double3 xformOp:translate = (-0.022, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell29"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.00475, 0.0005)
+            double3 xformOp:translate = (-0.022, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell30"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.0079, 0.0005)
+            double3 xformOp:translate = (-0.022, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell31"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.01605, 0.0005)
+            double3 xformOp:translate = (-0.022, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell32"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.022, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell33"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.018049999999999997, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell34"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0057, 0.0005)
+            double3 xformOp:translate = (-0.018049999999999997, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell35"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0056, 0.0005)
+            double3 xformOp:translate = (-0.018049999999999997, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell36"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.00475, 0.0005)
+            double3 xformOp:translate = (-0.018049999999999997, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell37"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0079, 0.0005)
+            double3 xformOp:translate = (-0.018049999999999997, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell38"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.01605, 0.0005)
+            double3 xformOp:translate = (-0.018049999999999997, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell39"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.018049999999999997, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell40"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.015649999999999997, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell41"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0057, 0.0005)
+            double3 xformOp:translate = (-0.015649999999999997, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell42"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0056, 0.0005)
+            double3 xformOp:translate = (-0.015649999999999997, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell43"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.00475, 0.0005)
+            double3 xformOp:translate = (-0.015649999999999997, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell44"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.01605, 0.0005)
+            double3 xformOp:translate = (-0.015649999999999997, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell45"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (-0.015649999999999997, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell46"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0288, 0.015, 0.0005)
+            double3 xformOp:translate = (0, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell47"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0288, 0.0057, 0.0005)
+            double3 xformOp:translate = (0, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell48"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0288, 0.0056, 0.0005)
+            double3 xformOp:translate = (0, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell49"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0288, 0.00475, 0.0005)
+            double3 xformOp:translate = (0, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell50"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0288, 0.0079, 0.0005)
+            double3 xformOp:translate = (0, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell51"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0288, 0.01605, 0.0005)
+            double3 xformOp:translate = (0, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell52"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0288, 0.015, 0.0005)
+            double3 xformOp:translate = (0, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell53"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (0.015649999999999997, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell54"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0057, 0.0005)
+            double3 xformOp:translate = (0.015649999999999997, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell55"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0056, 0.0005)
+            double3 xformOp:translate = (0.015649999999999997, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell56"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.00475, 0.0005)
+            double3 xformOp:translate = (0.015649999999999997, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell57"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.01605, 0.0005)
+            double3 xformOp:translate = (0.015649999999999997, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell58"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (0.015649999999999997, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell59"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (0.018049999999999997, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell60"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0057, 0.0005)
+            double3 xformOp:translate = (0.018049999999999997, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell61"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0056, 0.0005)
+            double3 xformOp:translate = (0.018049999999999997, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell62"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.00475, 0.0005)
+            double3 xformOp:translate = (0.018049999999999997, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell63"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0079, 0.0005)
+            double3 xformOp:translate = (0.018049999999999997, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell64"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.01605, 0.0005)
+            double3 xformOp:translate = (0.018049999999999997, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell65"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (0.018049999999999997, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell66"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.015, 0.0005)
+            double3 xformOp:translate = (0.022, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell67"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.0057, 0.0005)
+            double3 xformOp:translate = (0.022, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell68"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.00475, 0.0005)
+            double3 xformOp:translate = (0.022, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell69"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.0079, 0.0005)
+            double3 xformOp:translate = (0.022, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell70"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.01605, 0.0005)
+            double3 xformOp:translate = (0.022, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell71"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.015, 0.0005)
+            double3 xformOp:translate = (0.022, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell72"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (0.02595, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell73"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0057, 0.0005)
+            double3 xformOp:translate = (0.02595, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell74"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0056, 0.0005)
+            double3 xformOp:translate = (0.02595, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell75"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.00475, 0.0005)
+            double3 xformOp:translate = (0.02595, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell76"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.0079, 0.0005)
+            double3 xformOp:translate = (0.02595, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell77"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.01605, 0.0005)
+            double3 xformOp:translate = (0.02595, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell78"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0023, 0.015, 0.0005)
+            double3 xformOp:translate = (0.02595, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell79"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (0.02835, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell80"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0057, 0.0005)
+            double3 xformOp:translate = (0.02835, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell81"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0056, 0.0005)
+            double3 xformOp:translate = (0.02835, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell82"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.00475, 0.0005)
+            double3 xformOp:translate = (0.02835, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell83"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.01605, 0.0005)
+            double3 xformOp:translate = (0.02835, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell84"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.015, 0.0005)
+            double3 xformOp:translate = (0.02835, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell85"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.015, 0.0005)
+            double3 xformOp:translate = (0.0358, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell86"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.0057, 0.0005)
+            double3 xformOp:translate = (0.0358, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell87"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.0056, 0.0005)
+            double3 xformOp:translate = (0.0358, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell88"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.00475, 0.0005)
+            double3 xformOp:translate = (0.0358, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell89"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.0079, 0.0005)
+            double3 xformOp:translate = (0.0358, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell90"
+        {
+            color3f[] primvars:displayColor = [(0.62, 0.6, 0.52)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.01605, 0.0005)
+            double3 xformOp:translate = (0.0358, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell91"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.0124, 0.015, 0.0005)
+            double3 xformOp:translate = (0.0358, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell92"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.015, 0.0005)
+            double3 xformOp:translate = (0.046, -0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell93"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.0057, 0.0005)
+            double3 xformOp:translate = (0.046, -0.01715, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell94"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.0056, 0.0005)
+            double3 xformOp:translate = (0.046, -0.0115, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell95"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.00475, 0.0005)
+            double3 xformOp:translate = (0.046, -0.006325, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell96"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.0079, 0.0005)
+            double3 xformOp:translate = (0.046, 0, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell97"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.01605, 0.0005)
+            double3 xformOp:translate = (0.046, 0.011975, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell98"
+        {
+            color3f[] primvars:displayColor = [(0.26, 0.26, 0.27)]
+            double size = 1
+            float3 xformOp:scale = (0.008, 0.015, 0.0005)
+            double3 xformOp:translate = (0.046, 0.027500000000000004, 0.02475)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "slotfloor0"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0079, 0.0001)
+            double3 xformOp:translate = (-0.02835, 0, 0.024550000000000002)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "slotfloor1"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0079, 0.0001)
+            double3 xformOp:translate = (-0.015649999999999997, 0, 0.024550000000000002)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "slotfloor2"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.0056, 0.0001)
+            double3 xformOp:translate = (-0.022, -0.0115, 0.024550000000000002)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "slotfloor3"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0079, 0.0001)
+            double3 xformOp:translate = (0.015649999999999997, 0, 0.024550000000000002)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "slotfloor4"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.0025, 0.0079, 0.0001)
+            double3 xformOp:translate = (0.02835, 0, 0.024550000000000002)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "slotfloor5"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.0056, 0.0056, 0.0001)
+            double3 xformOp:translate = (0.022, -0.0115, 0.024550000000000002)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "heater"
+        {
+            color3f[] primvars:displayColor = [(0.55, 0.55, 0.56)]
+            double size = 1
+            float3 xformOp:scale = (0.16, 0.15, 0.22)
+            double3 xformOp:translate = (0, -0.25, 0.11)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "grille"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.0015, 0.11, 0.15)
+            double3 xformOp:translate = (-0.08075, -0.25, 0.11)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "dial"
+        {
+            color3f[] primvars:displayColor = [(0.05, 0.05, 0.05)]
+            double size = 1
+            float3 xformOp:scale = (0.03, 0.03, 0.01)
+            double3 xformOp:translate = (0, -0.25, 0.225)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+    }
+
+    def "collision"
+    {
+        def Cube "base" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.1, 0.07, 0.005)
+            double3 xformOp:translate = (0, 0, 0.0025)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell0" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.015, 0.02)
+            double3 xformOp:translate = (-0.046, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell1" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.0057, 0.02)
+            double3 xformOp:translate = (-0.046, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell2" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.0056, 0.02)
+            double3 xformOp:translate = (-0.046, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell3" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.00475, 0.02)
+            double3 xformOp:translate = (-0.046, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell4" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.0079, 0.02)
+            double3 xformOp:translate = (-0.046, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell5" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.01605, 0.02)
+            double3 xformOp:translate = (-0.046, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell6" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.015, 0.02)
+            double3 xformOp:translate = (-0.046, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell7" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.015, 0.02)
+            double3 xformOp:translate = (-0.0358, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell8" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.0057, 0.02)
+            double3 xformOp:translate = (-0.0358, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell9" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.0056, 0.02)
+            double3 xformOp:translate = (-0.0358, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell10" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.00475, 0.02)
+            double3 xformOp:translate = (-0.0358, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell11" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.0079, 0.02)
+            double3 xformOp:translate = (-0.0358, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell12" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.01605, 0.02)
+            double3 xformOp:translate = (-0.0358, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell13" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.015, 0.02)
+            double3 xformOp:translate = (-0.0358, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell14" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (-0.02835, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell15" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0057, 0.02)
+            double3 xformOp:translate = (-0.02835, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell16" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0056, 0.02)
+            double3 xformOp:translate = (-0.02835, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell17" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.00475, 0.02)
+            double3 xformOp:translate = (-0.02835, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell18" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.01605, 0.02)
+            double3 xformOp:translate = (-0.02835, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell19" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (-0.02835, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell20" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (-0.02595, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell21" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0057, 0.02)
+            double3 xformOp:translate = (-0.02595, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell22" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0056, 0.02)
+            double3 xformOp:translate = (-0.02595, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell23" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.00475, 0.02)
+            double3 xformOp:translate = (-0.02595, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell24" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0079, 0.02)
+            double3 xformOp:translate = (-0.02595, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell25" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.01605, 0.02)
+            double3 xformOp:translate = (-0.02595, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell26" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (-0.02595, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell27" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.015, 0.02)
+            double3 xformOp:translate = (-0.022, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell28" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.0057, 0.02)
+            double3 xformOp:translate = (-0.022, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell29" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.00475, 0.02)
+            double3 xformOp:translate = (-0.022, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell30" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.0079, 0.02)
+            double3 xformOp:translate = (-0.022, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell31" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.01605, 0.02)
+            double3 xformOp:translate = (-0.022, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell32" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.015, 0.02)
+            double3 xformOp:translate = (-0.022, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell33" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (-0.018049999999999997, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell34" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0057, 0.02)
+            double3 xformOp:translate = (-0.018049999999999997, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell35" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0056, 0.02)
+            double3 xformOp:translate = (-0.018049999999999997, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell36" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.00475, 0.02)
+            double3 xformOp:translate = (-0.018049999999999997, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell37" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0079, 0.02)
+            double3 xformOp:translate = (-0.018049999999999997, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell38" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.01605, 0.02)
+            double3 xformOp:translate = (-0.018049999999999997, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell39" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (-0.018049999999999997, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell40" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (-0.015649999999999997, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell41" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0057, 0.02)
+            double3 xformOp:translate = (-0.015649999999999997, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell42" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0056, 0.02)
+            double3 xformOp:translate = (-0.015649999999999997, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell43" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.00475, 0.02)
+            double3 xformOp:translate = (-0.015649999999999997, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell44" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.01605, 0.02)
+            double3 xformOp:translate = (-0.015649999999999997, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell45" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (-0.015649999999999997, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell46" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0288, 0.015, 0.02)
+            double3 xformOp:translate = (0, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell47" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0288, 0.0057, 0.02)
+            double3 xformOp:translate = (0, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell48" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0288, 0.0056, 0.02)
+            double3 xformOp:translate = (0, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell49" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0288, 0.00475, 0.02)
+            double3 xformOp:translate = (0, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell50" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0288, 0.0079, 0.02)
+            double3 xformOp:translate = (0, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell51" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0288, 0.01605, 0.02)
+            double3 xformOp:translate = (0, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell52" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0288, 0.015, 0.02)
+            double3 xformOp:translate = (0, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell53" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (0.015649999999999997, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell54" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0057, 0.02)
+            double3 xformOp:translate = (0.015649999999999997, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell55" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0056, 0.02)
+            double3 xformOp:translate = (0.015649999999999997, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell56" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.00475, 0.02)
+            double3 xformOp:translate = (0.015649999999999997, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell57" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.01605, 0.02)
+            double3 xformOp:translate = (0.015649999999999997, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell58" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (0.015649999999999997, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell59" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (0.018049999999999997, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell60" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0057, 0.02)
+            double3 xformOp:translate = (0.018049999999999997, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell61" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0056, 0.02)
+            double3 xformOp:translate = (0.018049999999999997, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell62" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.00475, 0.02)
+            double3 xformOp:translate = (0.018049999999999997, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell63" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0079, 0.02)
+            double3 xformOp:translate = (0.018049999999999997, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell64" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.01605, 0.02)
+            double3 xformOp:translate = (0.018049999999999997, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell65" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (0.018049999999999997, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell66" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.015, 0.02)
+            double3 xformOp:translate = (0.022, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell67" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.0057, 0.02)
+            double3 xformOp:translate = (0.022, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell68" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.00475, 0.02)
+            double3 xformOp:translate = (0.022, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell69" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.0079, 0.02)
+            double3 xformOp:translate = (0.022, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell70" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.01605, 0.02)
+            double3 xformOp:translate = (0.022, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell71" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0056, 0.015, 0.02)
+            double3 xformOp:translate = (0.022, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell72" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (0.02595, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell73" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0057, 0.02)
+            double3 xformOp:translate = (0.02595, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell74" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0056, 0.02)
+            double3 xformOp:translate = (0.02595, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell75" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.00475, 0.02)
+            double3 xformOp:translate = (0.02595, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell76" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.0079, 0.02)
+            double3 xformOp:translate = (0.02595, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell77" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.01605, 0.02)
+            double3 xformOp:translate = (0.02595, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell78" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0023, 0.015, 0.02)
+            double3 xformOp:translate = (0.02595, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell79" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (0.02835, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell80" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0057, 0.02)
+            double3 xformOp:translate = (0.02835, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell81" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.0056, 0.02)
+            double3 xformOp:translate = (0.02835, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell82" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.00475, 0.02)
+            double3 xformOp:translate = (0.02835, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell83" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.01605, 0.02)
+            double3 xformOp:translate = (0.02835, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell84" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0025, 0.015, 0.02)
+            double3 xformOp:translate = (0.02835, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell85" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.015, 0.02)
+            double3 xformOp:translate = (0.0358, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell86" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.0057, 0.02)
+            double3 xformOp:translate = (0.0358, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell87" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.0056, 0.02)
+            double3 xformOp:translate = (0.0358, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell88" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.00475, 0.02)
+            double3 xformOp:translate = (0.0358, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell89" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.0079, 0.02)
+            double3 xformOp:translate = (0.0358, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell90" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.01605, 0.02)
+            double3 xformOp:translate = (0.0358, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell91" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.0124, 0.015, 0.02)
+            double3 xformOp:translate = (0.0358, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell92" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.015, 0.02)
+            double3 xformOp:translate = (0.046, -0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell93" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.0057, 0.02)
+            double3 xformOp:translate = (0.046, -0.01715, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell94" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.0056, 0.02)
+            double3 xformOp:translate = (0.046, -0.0115, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell95" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.00475, 0.02)
+            double3 xformOp:translate = (0.046, -0.006325, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell96" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.0079, 0.02)
+            double3 xformOp:translate = (0.046, 0, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell97" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.01605, 0.02)
+            double3 xformOp:translate = (0.046, 0.011975, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "cell98" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.008, 0.015, 0.02)
+            double3 xformOp:translate = (0.046, 0.027500000000000004, 0.015000000000000001)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Cube "heater" (
+            prepend apiSchemas = ["PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            custom float physxCollision:contactOffset = 0.0002
+            custom float physxCollision:restOffset = 0
+            double size = 1
+            token visibility = "invisible"
+            float3 xformOp:scale = (0.16, 0.15, 0.22)
+            double3 xformOp:translate = (0, -0.25, 0.11)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+    }
+
+    def Material "Material" (
+        prepend apiSchemas = ["PhysicsMaterialAPI"]
+    )
+    {
+        float physics:dynamicFriction = 0.4
+        float physics:restitution = 0
+        float physics:staticFriction = 0.5
+    }
+}
+
