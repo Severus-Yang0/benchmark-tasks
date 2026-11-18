@@ -9,8 +9,7 @@ import task
 from scenekit import BodyState
 
 SEATED = np.asarray(task.SEATED_POS, float)
-LOCKED = {"leg_neg_slide_joint": -0.0060, "leg_pos_slide_joint": -0.0060, "leg_neg_flex_joint": 0.0,
-          "leg_pos_flex_joint": 0.0, task.clip.LEVER: task.clip.LEVER_SPAN}
+LOCKED = {"leg_pos_slide_joint": -task.clip.HOOK_DROP, "leg_pos_flex_joint": 0.0, task.clip.LEVER: task.clip.LEVER_SPAN}
 
 
 def pose(dx=0.0, dy=0.0, dz=0.0, tilt_deg=0.0, joints=None) -> BodyState:
@@ -55,6 +54,10 @@ def main() -> None:
     assert run(lower() + [pose(dz=0.002), pose()]) == 1.0
     # tipped 4 degrees by a tab press (one edge up about 1.4 mm): the low edge stays on, not lifted
     assert run(lower() + [pose(dz=0.0013, tilt_deg=3.9), pose()]) == 1.0
+    # raised 2 mm (under the lift limit), slid 15 mm out and back while hovering, set down where it touched: 0
+    assert run(lower() + [pose(0.0, 0.0, 0.002), pose(0.015, 0.0, 0.002), pose(0.0, 0.0, 0.002), pose()]) == 0.0
+    # raised 1.5 mm, slid 6 mm while hovering, set down: fine
+    assert run(lower(0.006) + [pose(0.006, 0.0, 0.0015), pose(0.0, 0.0, 0.0015), pose(0.0)]) == 1.0
     # touched far off the processor (no overlap) and carried over: not a touch
     assert run([pose(0.05, 0.0, 0.0)] + lower()) == 1.0
     # dragged on with the base over the processor's edge, then slid in: 0
