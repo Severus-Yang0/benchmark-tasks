@@ -1,7 +1,8 @@
 # Install an AMD Wraith Prism cooler without lifting it off its pre-applied paste
 
 An AM4 motherboard (a B550 board in real trials) lies on the table with a Ryzen processor in its socket. An AMD Wraith
-Prism, AMD's boxed cooler for AM4, stands on a foam block beside it, with its stock clip: a strap at each end with a
+Prism, AMD's boxed cooler for AM4, stands beside it on a foam support with a hole in the middle, so its pre-applied
+paste touches nothing before the trial. It has its stock clip: a strap at each end with a
 window that hooks over a lug on AM4's standard retention brackets. The left strap is fixed; the right one hangs loose
 from a black cam lever that lies along the shroud's side. A precision flat-head screwdriver stands in a rack beside the board.
 

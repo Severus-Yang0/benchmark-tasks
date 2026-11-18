@@ -1,7 +1,7 @@
 """On the station table, between the arms: an ATX motherboard (305 x 244 mm) lying flat, its CPU socket straight
 ahead between the arms, a processor already in it. The socket's retention frame has a lug at each end (its left and
 right ends, each towards one arm). On the left, an AMD Wraith Prism cooler (105 x 105 x 93 mm, 0.545 kg: aluminium fins,
-four copper heat pipes, a 92 mm fan in a black shroud) stands on a foam block. Its steel clip ends in a strap with a
+four copper heat pipes, a 92 mm fan in a black shroud) stands on a holed foam support, its pasted base clear. Its steel clip ends in a strap with a
 window at each end: the left one fixed, the right one loose, hanging from a black cam lever that lies along the
 shroud's side, unlocked. On the right, a precision flat-head screwdriver stands tip down in a rack.
 
@@ -81,11 +81,23 @@ def cooler_to_world(p, origin=SEATED_POS) -> np.ndarray:
     return np.asarray(origin) + np.array([c * x - s * y, s * x + c * y, z])
 
 
-# -- the foam block it starts on (left of the board): the base on it, the legs hanging clear beside it -------------
-FOAM_SIZE = (0.040, 0.040, 0.015)
+# -- the foam support it starts on (left of the board) ------------------------------------------------------------
+# A foam support with a square hole through it: the fin block rests on its rim, so the pasted base hangs in the hole
+# touching nothing; the rim stays inside the fin block's 92 x 84 mm (clear of the heat pipes' outer runs and the
+# clip's straps, which hang beyond it)
+FOAM_SIZE = (0.080, 0.076, 0.015)  # x, y, height
+FOAM_HOLE = 0.050  # square, through
 FOAM_XY = np.array([0.290, 0.200])
-START_POS = np.array([*FOAM_XY, TABLE + FOAM_SIZE[2] + 0.0003])
-FOAM_BLOCK = Shape("foam", pos=(*FOAM_XY, TABLE + FOAM_SIZE[2] / 2), size=FOAM_SIZE, color=FOAM)
+FIN_BOTTOM = 1.5 * MM  # the fin block's bottom above the base's bottom
+START_POS = np.array([*FOAM_XY, TABLE + FOAM_SIZE[2] - FIN_BOTTOM + 0.0003])
+_fx, _fy, _fh = FOAM_SIZE
+_sx, _sy = (_fx - FOAM_HOLE) / 2, (_fy - FOAM_HOLE) / 2
+FOAM_BLOCK = [
+    *(Shape(f"foam_x{i}", pos=(FOAM_XY[0] + s * (FOAM_HOLE + _sx) / 2, FOAM_XY[1], TABLE + _fh / 2),
+            size=(_sx, _fy, _fh), color=FOAM) for i, s in enumerate((-1, 1))),
+    *(Shape(f"foam_y{i}", pos=(FOAM_XY[0], FOAM_XY[1] + s * (FOAM_HOLE + _sy) / 2, TABLE + _fh / 2),
+            size=(FOAM_HOLE, _sy, _fh), color=FOAM) for i, s in enumerate((-1, 1))),
+]
 
 BOARD = UsdBody("board", usd="assets/board.usda", pos=tuple(BOARD_POS), rot_xyzw=yaw_xyzw(BOARD_YAW),
                 size=(0.244, 0.305, 0.04), mass=None, material=False)
@@ -121,7 +133,7 @@ CUP = [
 ]
 TOOL = UsdBody("screwdriver", usd="assets/screwdriver.usda", pos=tuple(TOOL_START), rot_xyzw=yaw_xyzw(TOOL_YAW),
                size=(0.018, 0.018, 0.15), mass=TOOL_MASS, material=False, torsional_patch=0.009)
-OBJECTS = [BOARD, COOLER, FOAM_BLOCK, TOOL, *RACK, *CUP]
+OBJECTS = [BOARD, COOLER, *FOAM_BLOCK, TOOL, *RACK, *CUP]
 
 # -- the clip springs ---------------------------------------------------------------------------------------------
 _STATE: dict = {"spring": None, "free": True, "anchor": None, "slid": 0.0, "lifted": False}
@@ -271,7 +283,7 @@ PUSH_PAST = 10.0 * MM  # push until the shaft's side is this far past the pivot:
 
 
 def demo():
-    """The left arm takes the cooler off its foam block from inside its fan opening, carries it over the processor,
+    """The left arm takes the cooler off its foam support from inside its fan opening, carries it over the processor,
     sets it down 5.5 mm towards its fixed end (the fixed strap outside its lug) and slides it back, so the lug goes
     into the strap's window; it lets go and leaves. The right arm then takes the screwdriver upright out of its rack,
     presses the lever down with its tip until the loose strap rides over its lug and hooks, lifts the lever's end with
