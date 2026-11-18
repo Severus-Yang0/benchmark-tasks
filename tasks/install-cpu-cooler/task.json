@@ -17,5 +17,5 @@
   "reset_notes": "Swing the lever back over to point along +x, its end raised 20 degrees, unlocked; press it down and pull the loose strap out off its lug; slide the cooler towards the fixed end off its lug and lift it off. Before each trial, wipe the old paste off the processor and the base with isopropyl alcohol and a lint-free cloth, lay a stencil (a 0.2 mm plastic sheet with a 30 x 30 mm square hole) on the base, spread about 0.3 g of paste through it with a plastic card, and lift the stencil off. Stand the cooler on its foam support, base down in the hole, so that only the fin block touches the support; the paste touches nothing until the trial. Stand the screwdriver back in its rack and empty the cup.",
   "fidelity": "Rigid bodies, 240 Hz physics, 20 Hz control; board fixed. The fixed strap is rigid; the loose strap slides on a spring (600 N/m) and flexes outward on another, and hangs from the lever, so pressing the lever down pushes it down. The lever's over-centre spring (past straight up) and cam tighten the clip. Shroud, fins and pipes are simple shapes at the Prism's sizes; the clip's and lever's positions are estimated from photos. Paste isn't simulated; its rule is checked from the base's pose.",
   "scores": "Dream-1 run: 0.0; demo: 1.0",
-  "media": "M-976W35"
+  "media": "M-Q6JAUV"
 }

@@ -133,7 +133,7 @@ so its trials can't be reproduced bit for bit; the demo can.
 
 ## Submitted videos and scores
 
-- Dream-1 run, with the instruction above: 0.0 (2,400 steps; the left arm hovered over the cooler on its foam block
-  without picking it up, and the right arm took the screwdriver out of its rack and held it beside the board, so the
-  cooler never reached the processor).
+- Dream-1 run, with the instruction above: 0.0 (2,400 steps; the left arm reached the cooler on its support and
+  pushed against its side without lifting it, and the right arm took the screwdriver out of its rack and held it near
+  the board, so the cooler never reached the processor).
 - Demo: `task_score = 1.0`.
