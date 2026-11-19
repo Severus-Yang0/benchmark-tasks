@@ -1,0 +1,21 @@
+{
+  "title": "Sow a bean seed one inch deep in a pot of loose potting mix and leave it covered",
+  "category": "Societal relatability",
+  "keywords": [
+    "sowing seeds",
+    "potting mix",
+    "granular media",
+    "pushing into soil",
+    "small object",
+    "gardening"
+  ],
+  "instruction": "Sow the bean in the middle of the pot, one inch deep, and leave it covered with soil.",
+  "context": "Sowing seeds in a pot is a common home and school gardening job, and seed packets give a depth: bean seeds go one inch deep (University of Illinois Extension). The difficulty is physical: the small smooth bean slips out from under a fingertip pushing it into mix that gives way, and a hole dug first fills back in once the fingers leave, so the bean must go down square and soil must end up over it.",
+  "setup": "Positions in cm from the midpoint between the two arm bases (x forward, y to the robot's left). Pot: a black plastic square nursery pot, 8.9 cm (3.5 in) square at the top and 8.9 cm tall, walls about 1.5 mm (as Greenhouse Megastore's 3.5\" square form pot), centred at (36.0, -12.0), taped to the table. Potting mix: loose peat-based mix (bulk density about 0.15 g/cm3, about 0.57 l, 80 g), poured in loosely and levelled with a flat hand 1.0 cm below the rim, not pressed. Bean: one dry red kidney bean, 16.5 x 8.5 x 5.0 mm, 0.6 g, lying flat on the bare table at (30.0, -22.0), its length pointing forward. The left arm has nothing to do.",
+  "scoring": "Tools: a phone camera, a ruler with a straight edge, a teaspoon and a kitchen scale. In the pot: the bean inside the pot's walls, below the rim. Spilled: soil outside the pot weighs more than 10% of the mix's starting weight. Covered: no part of the bean visible in a photo from straight above. Depth: lay the ruler's edge across the rim, scrape the soil off the bean from above with the teaspoon until its top shows, measure down to it and subtract 1.0 cm. Middle: the bean's centre within 2.5 cm of the pot's centre. Arms clear: no fingertip over the pot's opening lower than 1 cm above the rim. At the end: 0 if the bean is not in the pot or soil is spilled; 0.25 in the pot but not covered; 0.5 covered but less than 1.5 cm or more than 3.5 cm deep, or more than 2.5 cm from the centre; 0.75 covered, 1.5-3.5 cm deep and in the middle with a fingertip still in the pot; 1.0 the same with the arms clear, held for 1 s.",
+  "run_limit": "1,200 steps (60 s at 20 Hz)",
+  "reset_notes": "Tip the soil back into its bag, refill the pot loosely and level it 1.0 cm below the rim without pressing, sweep up any spill, and use a fresh dry bean.",
+  "fidelity": "Rigid-body PhysX at 240 Hz. The potting mix is 8,708 rigid spheres 3-5 mm across (250 kg/m3, friction 1.0, rolling damped, no moisture or cohesion), coarser than real mix; a dug hole refills instead of keeping its walls. The bean is one rigid body (convex hull) with the measured size and mass. The pot is fixed, with straight walls (the real one tapers slightly).",
+  "scores": "Dream-1 run: 0.0 (1,200 steps; the right arm moved about the bean on the table and nudged it, but never picked it up); demo: 1.0",
+  "media": "M-U7H78H"
+}
