@@ -38,18 +38,51 @@ table top.
 
 | Object | Where | What |
 |---|---|---|
-| Pot and plant | pot centred (38.0, -10.0), fixed | Black plastic 6 in azalea pot (15.2 cm across the top, 11.4 cm at the bottom, 11.4 cm tall), soil 0.4 cm below the rim, holding a day-neutral strawberry plant (e.g. 'Albion'). Leaves, flowers and any green fruit on the far half; no other ripe fruit |
-| Fruit truss | from the crown, over the near rim on the pot's centre line (y -10.0) | About 2 mm thick; rises among the leaf stalks to about 15 cm above the table, arches towards the robot over the rim about 1 cm above it and hangs down beyond it; the berry's own stalk hangs nearly straight down to the calyx |
-| Strawberry | centre (26.5, -10.0), 5.9 cm high, 3.5 cm beyond the rim | One ripe berry (fully red, 14-16 g, about 2.8 cm across and 3.6 cm long), tip down. Turn and place the pot so it hangs there |
+| Pot and plant | pot centred (38.0, -10.0), fixed | Black plastic 6 in azalea pot (15.2 cm across the top, 11.4 cm at the bottom, 11.4 cm tall), soil 0.4 cm below the rim, holding a day-neutral strawberry plant (e.g. 'Albion'). Leaves, flowers and any green fruit on the far half; no ripe fruit |
+| Fruit truss | from the crown, over the near rim on the pot's centre line (y -10.0) | The plant's own truss, prepared once (below). About 2 mm thick; rises among the leaf stalks to about 15 cm above the table, arches towards the robot over the rim about 1 cm above it and ends about 3 cm beyond it |
+| Strawberry | centre (26.5, -10.0), 5.9 cm high (tip 4.1 cm), 3.5 cm beyond the rim | A fresh long-stem berry chosen and clipped to the truss end as below: fully red, 14-16 g, about 2.8 cm across and 3.6 cm long, tip down, its own stalk hanging nearly straight down 3 cm from the clip to the calyx |
 | Basket | centred (23.0, -25.0), fixed | Square green molded-fiber quart berry basket (Pactiv 1 qt: 14.0 cm square at the top, 10.8 cm at the bottom, 8.3 cm tall), empty |
-
-Out of season, when no plant carries a ripe berry, a long-stem strawberry (sold year round for chocolate dipping,
-stalk about 5 cm) stands in: its stalk is joined to the end of a fruit truss with a 2.5 mm silicone grafting clip, so
-the berry hangs at the same place. The berry still comes off at its own abscission layer.
 
 Sources: berry mass, the mean of harvested cv. Beni hoppe fruit (14.8 g, Yamamoto et al. 2014); stalk diameter
 1.78 mm (Dimeas et al.); pot, a standard 6 in azalea pot (three-quarters as tall as it is wide); basket, Pactiv's 1 qt
 green molded fiber basket (5.5 x 5.5 x 3.25 in, 4.25 in at the bottom).
+
+### Preparing a real trial
+
+Every trial uses the same plant and truss and a fresh store-bought berry, so nothing depends on what the plant is
+growing that day. The berry keeps its own stalk, so it still comes off at its own abscission layer, where the stalk
+meets the calyx.
+
+**Once, before the first trial (the truss).** On a potted day-neutral plant (e.g. 'Albion', sold by nurseries and
+garden centres), pick a fruit truss about 2 mm thick and about 14 cm long from the crown that sinks about 1 cm when a
+berry is clipped on (as in the simulation). Cut off its flowers and fruit, and cut its tip about 3 cm beyond the rim.
+Turn the pot so the truss arches over the near rim on the pot's centre line, then mark the pot's footprint on the
+table and a line on the rim under the truss, so it goes back the same way. The truss stays on the living plant and is
+used for every trial; should it ever be damaged, prepare another truss of the plant the same way.
+
+**The berries (sourcing and storage).** Long-stem strawberries, sold for chocolate dipping, any variety, selected by
+these criteria. Use a berry that is fully red with no white or green shoulders, firm, free of bruises, mould and soft
+spots, with a green calyx, 14-16 g on a kitchen scale, at most 3.0 cm across, and with a stalk at least 4 cm long.
+Keep them unwashed, dry and in their clamshell in a refrigerator at 0-2 °C (UC Davis Postharvest Technology Center:
+0 °C and 90-95% humidity; UC ANR: 0-2 °C at home) and use them within 5 days of purchase (Driscoll's berry care). They
+are not washed (Driscoll's: rinse berries only just before eating), so they come to the trial dry.
+
+**Trial temperature.** Trials run at room temperature (20-25 °C) with the berries' flesh at room temperature: 2 hours
+before a session's first trial, take that session's berries out of the refrigerator in their clamshell (Driscoll's:
+take berries out an hour or two before eating so they reach room temperature). Bruising depends on the flesh's
+temperature (Ferreira et al. 2009, HortScience 44(7):1953, 1-30 °C), so it is the same for every trial. From then on a
+berry is handled only by its stalk.
+
+**Each trial (one clip and one ruler check, a couple of minutes).**
+
+1. Take one berry from the session's clamshell. Trim its stalk to 3.5 cm above the calyx.
+2. Pull the previous stalk out of the clip. Push the new stalk's end and the truss's end into the 2.5 mm silicone
+   grafting clip from each side until they meet, so 3 cm of stalk hangs free below the clip.
+3. Put the pot back on its marks, turned to its rim line. Check with a ruler that the berry's tip is 4.1 cm above the
+   table and its centre 3.5 cm beyond the rim; slide the stalk in the clip or turn the pot slightly to correct it.
+4. Empty the basket and put it on its marks.
+
+After a trial in which a berry leaked, wipe the gripper pads with a damp cloth and dry them before the next trial.
 
 ## Run a trial
 
@@ -109,8 +142,8 @@ the trial video, a close-up photo of the berry taken right after the trial, and 
   force of each robot link on the berry, checked every control step. On a real trial, a dented, flattened or leaking
   patch 3 mm or more across where a finger pressed, in the photo.
 - **Off:** the berry no longer hangs from the plant.
-- **Torn:** a piece of stalk more than 10 mm long remains above the calyx (simulation: it came off with the pull within
-  45 degrees of its axis).
+- **Torn:** a piece of stalk more than 10 mm long remains above the calyx, wherever the stalk parted (simulation: it
+  came off with the pull within 45 degrees of its axis).
 - **In the basket:** the berry's centre inside the basket's walls (by at least half its radius) and the berry resting
   on the basket's floor, any way up (simulation: its centre no more than 22 mm above the floor, and still).
 - **Released:** no part of the robot touches the berry (simulation: PhysX contacts within 1 mm).
@@ -126,9 +159,9 @@ the trial video, a close-up photo of the berry taken right after the trial, and 
 
 ## Reset
 
-One berry is used per trial. Turn the pot so the truss of the plant's next ripe berry arches over the near rim and the
-berry hangs as in the setup (out of season, clip a fresh long-stem berry to a truss end) and empty the basket. Use
-berries that are fully red and firm.
+One berry is used per trial; the plant, its prepared truss, the pot and the basket are reused. Pull the old stalk
+out of the clip, clip a fresh berry as in "Each trial" above, check its place with a ruler and empty
+the basket.
 
 ## Real trials
 
