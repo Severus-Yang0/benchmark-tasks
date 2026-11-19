@@ -281,20 +281,21 @@ def in_bin(points) -> np.ndarray:
     return np.asarray(points)[:, 2] < TOP - 0.2
 
 
-def vacuumed_fraction(points) -> float:
-    return float(in_bin(points).sum()) / len(points)
+def vacuumed_fraction(points, radii) -> float:
+    """The share of the grit's mass in the bin, as a real trial weighs it (the grains are of one density)."""
+    m = np.asarray(radii) ** 3
+    return float(m[in_bin(points)].sum() / m.sum())
 
 
 def score(objects, grains=None) -> float:
-    """By the share of the grit (by count; the grains are alike) vacuumed into the machine, provided the tool is
-    clicked on at the end. Grit pushed out of the gap or dropped elsewhere does not count.
+    """By the share of the grit's mass vacuumed into the machine, provided the tool is clicked on at the end. Grit pushed out of the gap or dropped elsewhere does not count.
     0 if the tool is not on (or under 25 % vacuumed); 0.25 for 25 %; 0.5 for 50 %; 0.75 for 75 %; 1.0 for 85 % or more.
     """
     vac, tool = objects["vacuum"], objects["crevice"]
-    p = grains[0] if grains is not None else soilkit.grains("grit")[0]
+    p, r = grains if grains is not None else soilkit.grains("grit")
     if not clicked(vac, tool):
         return 0.0
-    f = vacuumed_fraction(p)
+    f = vacuumed_fraction(p, r)
     for need, s in ((0.85, 1.0), (0.75, 0.75), (0.50, 0.5), (0.25, 0.25)):
         if f >= need:
             return s
@@ -345,7 +346,7 @@ def _vacuum(environment) -> None:
                   f"vac=({vac.pos[0]:.3f},{vac.pos[1]:.3f},{(vac.pos[2] - TOP) * 1000:.0f}mm) "
                   f"heading={np.degrees(np.arctan2(vac.rotation()[1, 0], vac.rotation()[0, 0])):.1f}deg "
                   f"pitch={np.degrees(np.arcsin(-vac.rotation()[2, 0])):.1f}deg "
-                  f"taken={len(_STATE['taken'])} vacuumed={vacuumed_fraction(soilkit.grains('grit')[0]) * 100:.0f}% "
+                  f"taken={len(_STATE['taken'])} vacuumed={vacuumed_fraction(*soilkit.grains('grit')) * 100:.0f}% "
                   f"{_hand(environment, vac)} {_left(soilkit.grains('grit')[0])}",
                   flush=True)
     except Exception:
@@ -507,11 +508,23 @@ def self_test():
     p0, r0 = soilkit.lattice(GRIT)
     n = len(p0)
 
-    def grit(frac):
+    def grit(frac, order=None):
+        """Grains moved to the bin in ``order`` (default: as listed) up to ``frac`` of the grit's mass."""
         p = p0.copy()
-        k = int(round(frac * n))
-        p[:k] = BIN_AT
+        idx = np.arange(n) if order is None else np.asarray(order)
+        share = np.cumsum(r0[idx] ** 3) / (r0 ** 3).sum()
+        p[idx[:int(np.searchsorted(share, frac + 1e-9))]] = BIN_AT
         return p, r0
+
+    def by_count(frac, order):
+        """The first ``frac`` of the grains in ``order`` moved to the bin, whatever they weigh."""
+        p = p0.copy()
+        p[np.asarray(order)[:int(round(frac * n))]] = BIN_AT
+        return p, r0
+
+    smallest = np.argsort(r0)
+    small_mass = (r0[smallest[:int(round(0.86 * n))]] ** 3).sum() / (r0 ** 3).sum()
+    assert small_mass < 0.85, small_mass  # the smallest 86 % of the grains weigh under 85 % of the grit
 
     cases = {
         "nothing removed": (on, grit(0.0), 0.0),
@@ -523,6 +536,8 @@ def self_test():
         "86 %": (on, grit(0.86), 1.0),
         "95 %": (on, grit(0.95), 1.0),
         "95 % but the tool not home": (loose, grit(0.95), 0.0),
+        "86 % of the grains by count, the smallest ones: scored by mass": (on, by_count(0.86, smallest),
+                                                                           0.75 if small_mass >= 0.75 else 0.5),
         "all pushed out of the gap, none vacuumed": (on, (p0 + np.array([-0.30, 0.0, 0.0]), r0), 0.0),
     }
     for name, (tool, g, want) in cases.items():

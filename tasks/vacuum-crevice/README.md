@@ -33,7 +33,7 @@ table top.
 
 | Object | Where | What |
 |---|---|---|
-| Vacuum | standing on the block, inlet pointing forward (+x); its inlet's front end at (49.6, -6.0), the handle's middle at (25.0, -6.0), 15.9 cm up | Dyson V8 Cyclone main body without wand or tool: 32 cm long, about 1.7 kg; inlet axis 9.2 cm above its base; red power button on top of the motor housing (press once: on; again: off). Switched off |
+| Vacuum | standing on the block, inlet pointing forward (+x); its inlet's front end at (49.6, -6.0), the handle's middle at (25.0, -6.0), 15.9 cm up | Dyson V8 Cyclone (model SV55) main body without wand or tool: 32 cm long, about 1.7 kg; inlet axis 9.2 cm above its base; red power button on top of the body (press once: on; again: off), where the earlier Dyson V8 had a trigger. Switched off |
 | Block | centred (29.6, -6.0) | Wooden block, 28 x 14 x 9 cm (L x W x H) |
 | Crevice tool | in the cradle, pointing forward along the inlet's axis (18.8 cm up), its collar's open end at (52.6, -6.0), 3.0 cm in front of the inlet; tip at x 75.6 | Dyson quick-release crevice tool (part 967612-01): collar 35 mm across, 55 mm long; blade 175 mm long, 17.2 x 24.7 mm, its thin side across (y); 23 cm long, about 40 g |
 | Cradle | under the tool | Three wooden pieces: a post under the collar's front 14 mm (x 56.6-58.0) with a notch the collar sits in (17.0 cm up, side cheeks 39 mm apart); a post under the blade (x 67.6-70.6, notch 17.6 cm up, cheeks 21 mm apart); a stop 1 mm in front of the tip (x 75.7-76.7, 20 cm tall) |
@@ -42,7 +42,9 @@ table top.
 
 Sources: the tool's reach and size, Dyson ("reaches up to 175 mm into tight, narrow spaces as small as 17.2 mm",
 dyson.com support page for 967612-01; 17.3 mm width, Spares2Repair); its 35 mm collar, vhbw replacement listings
-(ManoMano); tools clicking onto the inlet and the power button on top, Dyson's V8 Cyclone user manual (pp. 2-3); the
+(ManoMano); tools clicking onto the inlet and the power button, Dyson's V8 Cyclone user manual
+(p. 3, "Operating your machine": "The top button turns your vacuum on and off, while the lower button changes power
+mode"; "the power button is red and closer to the post-motor filter"); the
 body's 32 cm length, Smart Home Fox's V8 review ("32 cm plus attachment"); the other body sizes, scaled from the
 manual's side drawing to that length; mass, the V8 handheld's 1.58 kg (Dyson specification, TechRadar) plus the 0.16 kg
 the V8 Cyclone weighs more as a whole machine (2.70 kg, dyson.co.uk, against the V8's 2.54 kg, dyson.ie); quartz
@@ -100,7 +102,7 @@ a cup.
   socket's floor (the groove gives 2 mm of play), square to the inlet within 3 degrees, and the catch's tooth down.
 - **Vacuumed:** the share of the grit that ended up in the vacuum's bin. On a real trial, empty the bin before the
   trial; afterwards empty it into the cup and weigh the grit, out of 32 g. Grit pushed out of the gap, or picked up
-  any other way, does not count. In simulation: by count (the grains are alike), the grains the suction took.
+  any other way, does not count. In simulation: by mass (the grains are of one density, 2-3 mm), the grains the suction took.
 
 | Outcome | Score |
 |---|---|
