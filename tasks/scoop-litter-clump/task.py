@@ -1,8 +1,8 @@
 """Scoop a urine clump out of a cat's litter box with a slotted scoop, sift the loose litter back, and tip the clump
 into the waste bin.
 
-On the station table stands a Van Ness small cat litter pan (14.4 x 10.75 x 4 in) filled 2 in deep with tofu clumping
-litter (strips 2 mm across, 1-2 cm long). Near its front lies one urine clump, about golf-ball size (Litter-Robot:
+On the station table stands a Van Ness small cat litter pan (14.4 x 10.75 x 4 in) filled 2 in deep with Happy & Polly
+Clumping Natural Tofu Cat Litter (strips 2 mm across, 1-2 cm long). Near its front lies one urine clump, about golf-ball size (Litter-Robot:
 "about 1 to 2 inches across"), its top just showing above the litter. A Van Ness plastic litter scoop (11 x 4.88 x
 2.25 in, five 1/2 in slots in its floor) rests in the pan, its basket on the litter and its handle over the pan's
 right-hand rim; an mDesign 1.25 gal round wastebasket stands to the left of the pan.
@@ -251,10 +251,10 @@ if os.environ.get("NO_LITTER"):  # for testing grasps quickly: no litter (the sc
 # -- scoring ---------------------------------------------------------------------------------------------------------
 LITTER_IN_BIN_MAX = 0.015  # kg of loose litter that may go into the bin with the clump
 LITTER_OUT_MAX = 0.015  # kg of litter that may end up neither in the pan nor in the bin (table, floor, scoop)
-LIFTED = 10 * MM  # "carried clear": the clump's bottom this far above the litter's level
+LIFTED = 10 * MM  # "scooped": the clump on the scoop, its bottom this far above the litter's level
 FINGER_REACH = 88 * MM  # the fingers run this far from the tip links' origins (their roots) to their ends
 FINGER_HALF = 5 * MM  # half a finger's thickness, for "touching the clump"
-_STATE: dict = {"touched": False, "lifted": False, "t": 0.0, "last": -1.0}
+_STATE: dict = {"touched": False, "scooped": False, "t": 0.0, "last": -1.0}
 
 
 def grain_mass(r):
@@ -291,20 +291,31 @@ def clump_bottom(clump) -> float:
     return float(clump.pos[2] - abs(axis[2]) * CLUMP_H / 2 - np.hypot(axis[0], axis[1]) * CLUMP_R)
 
 
-def score(objects, grains=None, touched=None, lifted=None) -> float:
-    """0 if a finger ever touched the clump. 1.0: the clump in the bin with at most 15 g of loose litter, and at most
-    15 g of litter left anywhere but the pan and the bin; 0.5: the clump in the bin, with more litter in the bin or
-    out; 0.25: the clump not in the bin but carried clear of the litter at some point (its bottom 1 cm above the
-    litter's level); else 0."""
+def on_scoop(clump, scoop) -> bool:
+    """The clump's centre over the basket's floor, inside its walls (the scoop's frame)."""
+    c = scoop.to_local(clump.pos)
+    return bool(abs(c[0]) < BASKET_L / 2 and abs(c[1]) < SC_W / 2 and -5 * MM < c[2] < WALL_H + CLUMP_H)
+
+
+def scooped_now(clump, scoop) -> bool:
+    """Scooped: the clump on the scoop with its bottom 1 cm or more above the litter's level."""
+    return clump_bottom(clump) > LEVEL + LIFTED and on_scoop(clump, scoop)
+
+
+def score(objects, grains=None, touched=None, scooped=None) -> float:
+    """0 if a finger ever touched the clump, or if the clump was never scooped (on the scoop, its bottom 1 cm above
+    the litter's level). Once scooped: 1.0 the clump in the bin with at most 15 g of loose litter, and at most 15 g of
+    litter left anywhere but the pan and the bin; 0.5 the clump in the bin, with more litter in the bin or out; 0.25
+    the clump not in the bin. The pan is fixed, as it is taped down on a real trial."""
     touched = _STATE["touched"] if touched is None else touched
-    lifted = _STATE["lifted"] if lifted is None else lifted
-    if touched:
+    scooped = _STATE["scooped"] if scooped is None else scooped
+    if touched or not scooped:
         return 0.0
     clump = objects["clump"]
     if in_bin(clump.pos)[0]:
         in_b, out = litter_tally(grains if grains is not None else soilkit.grains("litter"))
         return 1.0 if in_b <= LITTER_IN_BIN_MAX and out <= LITTER_OUT_MAX else 0.5
-    return 0.25 if lifted else 0.0
+    return 0.25
 
 
 def success(objects) -> bool:
@@ -336,7 +347,7 @@ def _fingers(scoop, links) -> str:
 
 @on_reset
 def _reset(environment) -> None:
-    _STATE.update(touched=False, lifted=False, t=0.0, last=-1.0)
+    _STATE.update(touched=False, scooped=False, t=0.0, last=-1.0)
 
 
 @on_step
@@ -348,12 +359,12 @@ def _watch(environment) -> None:
         links = robot_links(environment)
         if not _STATE["touched"]:
             _STATE["touched"] = any(touches(clump, finger_points(links[side])) for side in ("left", "right"))
-        if clump_bottom(clump) > LEVEL + LIFTED:
-            _STATE["lifted"] = True
+        scoop = partkit._part_state(environment, SCOOP)
+        if not _STATE["scooped"]:
+            _STATE["scooped"] = scooped_now(clump, scoop)
         _STATE["t"] += environment.unwrapped.step_dt
         if os.environ.get("LITTER_LOG") and _STATE["t"] - _STATE["last"] >= 0.5:
             _STATE["last"] = _STATE["t"]
-            scoop = partkit._part_state(environment, SCOOP)
             in_b, out = litter_tally(soilkit.grains("litter")) if not os.environ.get("NO_LITTER") else (0.0, 0.0)
             c = scoop.to_local(clump.pos)
             pitch = np.degrees(np.arcsin(-scoop.rotation()[2, 0]))
@@ -363,7 +374,7 @@ def _watch(environment) -> None:
                   f"{c[1] * 1000:.0f},{c[2] * 1000:.0f})mm scoop=({scoop.pos[0]:.3f},{scoop.pos[1]:.3f},"
                   f"{(scoop.pos[2] - TOP) * 1000:.0f}mm) pitch={pitch:.0f} roll={roll:.0f} "
                   f"litter_bin={in_b * 1000:.1f}g out={out * 1000:.1f}g touched={_STATE['touched']} "
-                  f"lifted={_STATE['lifted']} score={score({'clump': clump}):.2f} "
+                  f"scooped={_STATE['scooped']} score={score({'clump': clump}):.2f} "
                   f"{_fingers(scoop, links['right'])}", flush=True)
     except Exception:
         import traceback
@@ -636,20 +647,29 @@ def self_test():
     on_table = state((0.25, -0.25, TOP + CLUMP_R))
     cases = {
         "untouched, still in the litter": (home, litter(), False, False, 0.0),
-        "lifted, then dropped back in the pan": (home, litter(), False, True, 0.25),
-        "lifted, dropped on the table": (on_table, litter(), False, True, 0.25),
-        "pushed onto the table, never lifted": (on_table, litter(), False, False, 0.0),
+        "scooped, then dropped back in the pan": (home, litter(), False, True, 0.25),
+        "scooped, dropped on the table": (on_table, litter(), False, True, 0.25),
+        "pushed onto the table, never scooped": (on_table, litter(), False, False, 0.0),
+        "in the bin with litter, never scooped (pan tipped)": (binned, litter(0.5, 0.2), False, False, 0.0),
+        "in the bin, sifted, but never scooped": (binned, litter(), False, False, 0.0),
         "in the bin, sifted": (binned, litter(0.005, 0.005), False, True, 1.0),
         "in the bin, 14 g litter with it": (binned, litter(0.014, 0.0), False, True, 1.0),
         "in the bin with a whole unsifted scoopful": (binned, litter(0.120, 0.0), False, True, 0.5),
         "in the bin, 30 g spilt on the table": (binned, litter(0.0, 0.030), False, True, 0.5),
         "in the bin, but picked with the fingers": (binned, litter(), True, True, 0.0),
     }
-    for name, (clump, g, touched, lifted, want) in cases.items():
-        got = score({"clump": clump}, g, touched, lifted)
+    for name, (clump, g, touched, scooped, want) in cases.items():
+        got = score({"clump": clump}, g, touched, scooped)
         assert abs(got - want) < 1e-9, (name, got, want)
-    # the starting scene against the rules: the clump in the litter, not lifted, not in the bin
+    # the starting scene against the rules: the clump in the litter, not scooped, not in the bin
     assert not in_bin(home.pos)[0] and clump_bottom(home) < LEVEL and clump_bottom(home) > FLOOR_Z
+    # "scooped": the clump lying on the basket's floor, raised clear, counts; raised beside the scoop does not
+    R = scoop_rot(0.0)
+    raised = state((CLUMP_XY[0], CLUMP_XY[1], LEVEL + LIFTED + CLUMP_H / 2 + 5 * MM))
+    under = state(raised.pos - R @ np.array([0.0, 0.0, SHELL / 2 + CLUMP_H / 2]), R)
+    assert scooped_now(raised, under) and not scooped_now(home, state(home.pos - R @ (0, 0, CLUMP_H / 2), R))
+    assert not scooped_now(raised, state(raised.pos + (0.0, -BASKET_L, 0.0), R))
+    assert not scooped_now(raised, state(raised.pos + (0.0, 0.0, -0.10), R))
     # finger check: a finger beside the clump touches it, one 2 cm away does not
     side = np.array([CLUMP_XY[0] + CLUMP_R + 3 * MM, CLUMP_XY[1], CLUMP_Z])
     assert touches(home, side[None]) and not touches(home, (side + (0.02, 0, 0))[None])
