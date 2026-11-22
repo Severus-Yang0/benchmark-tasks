@@ -1,6 +1,6 @@
 """The cotter pin's prongs bend and stay bent: elastic up to the prong's plastic moment, plastic beyond it.
 
-The cotter (assets/cotter.usda, work/cotter/make_cotter.py) is a floating-base articulation: the eye and the shank are
+The cotter (assets/cotter.usda) is a floating-base articulation: the eye and the shank are
 its root body; the two prongs lie side by side, each on a revolute joint about z at its root (``prong_p_joint``: the
 +y prong, outwards a positive angle; ``prong_n_joint``: the -y prong, outwards negative); they are spread apart round
 the nut. Each joint is driven back to a set angle by a
@@ -8,8 +8,8 @@ stiff spring, K = MY / 2 degrees, so a prong springs back about 2 degrees after 
 would pass the plastic moment MY, the set angle follows the prong (it yields), keeping the torque at MY: a prong bent
 past yield stays where it was pushed, less the 2 degree springback.
 
-MY: plastic moment of a half-round prong 0.75 mm thick, 1.5 mm wide (a 1/16 in pin's wire, ASME B18.8.1) at a yield
-strength of 300 MPa (low-carbon steel 1005-1010): about 0.045 N m, i.e. about 5.6 N pushed 8 mm from the root.
+MY: plastic moment of a half-round prong 1.1 mm thick, 2.2 mm wide (a 3/32 in pin's wire, ASME B18.8.1) at a yield
+strength of 250 MPa (low-carbon steel 1005-1010): about 0.118 N m, i.e. about 12 N pushed 10 mm from the root.
 
 Isaac Lab writes every articulation's joint targets to PhysX before each physics substep (``write_data_to_sim``);
 this wraps that call on the cotter, so it decides on the joint angles PhysX reported after the previous substep.
@@ -21,12 +21,8 @@ import math
 
 JOINTS = ("prong_p_joint", "prong_n_joint")
 SIGN = {"prong_p_joint": 1.0, "prong_n_joint": -1.0}  # outwards: the +y prong a positive angle about z, the -y negative
-MY = 0.045  # N m
+MY = 0.118  # N m: the plastic moment below
 
-# the scripted demo's live aim (task.py): the screwdriver's waypoints for each pass at the prongs, with their aim
-# relative to where the pin should sit, which task.py's on_step hook moves to where it does sit (shared through this
-# module, which the policy's and the environment's copies of the task file both import)
-LIVE: dict = {}
 SPRINGBACK = math.radians(2.0)
 K = MY / SPRINGBACK  # N m / rad
 DAMPING = K * 0.002

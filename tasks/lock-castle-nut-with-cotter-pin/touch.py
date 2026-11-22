@@ -1,4 +1,4 @@
-"""Which of the task's bodies a robot link touches, from PhysX contacts (for "released": no gripper touches the handle).
+"""Which of the task's bodies a robot link touches, from PhysX contacts (for "released": no gripper touches the pin).
 A name is a scene object, or "object/link" for one link of an articulation.
 
 Isaac Lab turns PhysX contact processing off unless a ContactSensor exists (this embodiment builds none); importing
@@ -93,7 +93,7 @@ def _make_view(environment, names) -> None:
     stage = get_current_stage()
     bodies = []
     for n in names:
-        n, _, link = n.partition("/")  # "panel/handle_n2": that link of the articulation "panel"
+        n, _, link = n.partition("/")  # "cotter/prong_p": that link of the articulation "cotter"
         path = scene[n].root_view.prim_paths[0]
         prim = stage.GetPrimAtPath(path)
         if link:

@@ -1,10 +1,9 @@
 """scenekit: USD bodies, articulations and posed fixed shapes for a yam_arena task file.
 
-yam_arena's task files spawn single primitives (yaw only) and library assets. This module adds three object kinds,
-for the hinged platform, the lock pin and the mannequin hand:
+yam_arena's task files spawn single primitives (yaw only) and library assets. This module adds two object kinds:
 
 - :class:`UsdBody`: a body loaded from a USD file next to the task file. With ``articulation=True`` it is an
-  articulation (here, the stand and the platform on its hinge, fixed base) whose joints start at ``joint_pos``.
+  articulation (here, the cotter pin with its two hinged prongs) whose joints start at ``joint_pos``.
 - :class:`Shape`: a fixed box or capsule in any orientation.
 
 They subclass ``yam_arena.task_file.Box`` only so the task-file checks accept them. Importing this module hooks
