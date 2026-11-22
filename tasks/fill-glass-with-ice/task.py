@@ -12,7 +12,7 @@ Government: "the glass may chip and contaminate the ice"; Hong Kong Centre for F
 such as a drinking glass"; DC Health: "Never use glass as a scoop"). The safe way: take the scoop, scoop the ice into
 the glass, and put the scoop back outside the ice.
 
-Simulation: the ice is 367 rigid crescent cubes (icekit: convex hulls); the scoop and the glass are rigid parts
+Simulation: the ice is a few hundred rigid crescent cubes (icekit: convex hulls); the scoop and the glass are rigid parts
 (partkit); the pan's walls are fixed boxes.
 
 Run it:  inspect-robots run --embodiment yam_arena -E task=task.py -E object_jitter=0 --scorer task_score ...
@@ -84,9 +84,11 @@ PAN = [
 ]
 RIM = TOP + PAN_H
 
-# -- the ice: Hoshizaki crescent cubes, "1 1/8 x 1 1/2 x 1/2 in" (Hoshizaki KM spec sheets): a half-moon 1 1/8 in
-# across its flat side and 1/2 in high, 1 1/2 in long, about 10.5 cm^3 (9.6 g at 917 kg/m^3). Filled 4 in deep.
-CUBE_C, CUBE_H, CUBE_L = 1.125 * INCH, 0.5 * INCH, 1.5 * INCH
+# -- the ice: crescent cubes from a household refrigerator's icemaker, "Regular Crescent Cube: 2-1/2" long x 3/4" high
+# x 3/4" thick" (GE Appliances, "Refrigerator - Normal Ice Production and Cube Size"): a half-moon 2 1/2 in across its
+# flat side and 3/4 in high, 3/4 in thick, about 16 cm^3 (15 g at 917 kg/m^3; GE: 7 cubes weigh 0.21 lb, 13.6 g each).
+# Filled 4 in deep.
+CUBE_C, CUBE_H, CUBE_L = 2.5 * INCH, 0.75 * INCH, 0.75 * INCH
 
 
 def _crescent(n=10):
@@ -99,9 +101,9 @@ def _crescent(n=10):
 
 ICE_DEPTH = 4.0 * INCH
 LEVEL = FLOOR_Z + ICE_DEPTH  # the ice's levelled surface (the top of the highest cubes)
-_FILL = 2.2 * ICE_DEPTH  # the loose lattice it settles from (work/fill-glass-with-ice/prepare_ice.sh)
+_FILL = float(os.environ.get("ICE_FILL", "3.0")) * ICE_DEPTH  # the loose lattice it settles from (prepare_ice.sh)
 ICE = icekit.Ice("ice", pos=(PX, PY, FLOOR_Z + _FILL / 2), size=(PAN_L - 2 * MM, PAN_W - 2 * MM, _FILL),
-                 profile=_crescent(), length=CUBE_L, density=917.0, friction=(0.2, 0.1), combine="min",
+                 profile=_crescent(), length=CUBE_L, density=917.0, friction=(0.2, 0.1), combine="min", layered=True,
                  start_file=os.environ.get("ICE_START", "assets/ice_start.npz"))
 CUBE_MASS = 917.0 * icekit.volume(ICE)
 
@@ -180,8 +182,8 @@ HANDLE = part("scoop_handle", pos=SCOOP0, yaw=0.0, boxes=[HANDLE_BOX], mass=HAND
 OBJECTS = [*PAN, ICE] if PREP else [*PAN, ICE, GLASS, SCOOP, HANDLE]
 
 # -- scoring ---------------------------------------------------------------------------------------------------------
-FULL = int(os.environ.get("ICE_FULL", "12"))  # cubes in the glass for "filled": about two thirds full (in the demo,
-# 14 cubes reach 110 mm up the 149 mm glass: cubes of this size pack loosely in a glass this narrow)
+FULL = int(os.environ.get("ICE_FULL", "8"))  # cubes in the glass for "filled": about two thirds full (in the demo,
+# 8 cubes reach 107 mm up the 149 mm glass: cubes this long pack loosely in a glass this narrow)
 HALF = FULL // 2
 SPILL_MAX = 5  # cubes that may end up neither in the pan nor in the glass
 UPRIGHT = np.cos(np.radians(20))
@@ -213,15 +215,26 @@ def in_ice(p) -> bool:
     return bool(np.any(in_pan_xy(p) & (p[:, 2] < HAND_LEVEL)))
 
 
-TOUCH = 16 * MM  # a finger point this close to a cube's centre touches it (the cube is 29 x 38 x 13 mm)
+TOUCH = 3 * MM  # a finger point this close to a cube's outline (its box: CUBE_L x CUBE_C x CUBE_H) touches it
 
 
-def touches_ice(points, cubes) -> bool:
-    """Any of the points touching any cube, wherever it is (in the pan, on the bar, in the glass)."""
+def _rotations(quats) -> np.ndarray:
+    """N x 3 x 3 rotation matrices from N x 4 (x, y, z, w) quaternions."""
+    x, y, z, w = np.asarray(quats, float).reshape(-1, 4).T
+    return np.stack([np.stack([1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w)], -1),
+                     np.stack([2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w)], -1),
+                     np.stack([2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y)], -1)], -2)
+
+
+def touches_ice(points, cubes, quats=None) -> bool:
+    """Any of the points touching any cube, wherever it is (in the pan, on the bar, in the glass): within TOUCH of
+    the cube's box (its length along the cube's x, its flat side along y, its height along z)."""
     p = np.atleast_2d(np.asarray(points, float))
-    c = np.asarray(cubes, float)
-    d = np.linalg.norm(c[None, :, :] - p[:, None, :], axis=2)
-    return bool(d.min() < TOUCH)
+    c = np.asarray(cubes, float).reshape(-1, 3)
+    R = _rotations(quats if quats is not None else np.tile([0.0, 0.0, 0.0, 1.0], (len(c), 1)))
+    local = np.einsum("nji,pnj->pni", R, p[:, None, :] - c[None, :, :])  # each point in each cube's frame
+    half = np.array([CUBE_L, CUBE_C, CUBE_H]) / 2 + TOUCH
+    return bool(np.any(np.all(np.abs(local) < half, axis=2)))
 
 
 def glass_points(glass) -> np.ndarray:
@@ -307,8 +320,8 @@ def _watch(environment) -> None:
         if not _STATE["glass_in"] and below_rim_in_pan(glass_points(glass)):
             _STATE["glass_in"] = True
         if not _STATE["hand_in"]:
-            cubes = icekit.cubes("ice")[0]
-            _STATE["hand_in"] = any(in_ice(finger_points(links[s])) or touches_ice(finger_points(links[s]), cubes)
+            cubes, quats = icekit.cubes("ice")
+            _STATE["hand_in"] = any(in_ice(finger_points(links[s])) or touches_ice(finger_points(links[s]), cubes, quats)
                                     for s in ("left", "right"))
         _STATE["t"] += environment.unwrapped.step_dt
         if os.environ.get("ICE_LOG") and _STATE["t"] - _STATE["last"] >= 0.5:
@@ -521,15 +534,18 @@ def self_test():
     assert not below_rim_in_pan(glass_points(glass)) and not scoop_in_pan(scoop_out)
     assert ice_tally(glass, p0)[0] == 0
     assert in_glass(glass, inside[None])[0] and not in_glass(glass, (inside + (0, 0, G_H))[None])[0]
-    # a finger touching a cube on the bar counts as a hand on the ice; one 3 cm away does not
-    loose = np.array([[0.25, -0.40, TOP + 7 * MM]])
-    assert touches_ice(loose + (0, 0, 10 * MM), loose) and not touches_ice(loose + (0, 0.03, 0), loose)
+    # a finger touching a cube on the bar counts as a hand on the ice, at its tip too; one 3 cm clear of it does not
+    loose = np.array([[0.25, -0.40, TOP + CUBE_H / 2]])
+    turned = [_q_axis((0, 0, 1), np.pi / 2)]  # its flat side along x
+    assert touches_ice(loose + (0, 0, CUBE_H / 2 + 2 * MM), loose) and touches_ice(loose + (0, CUBE_C / 2, 0), loose)
+    assert not touches_ice(loose + (0, CUBE_C / 2 + 30 * MM, 0), loose)
+    assert touches_ice(loose + (CUBE_C / 2, 0, 0), loose, turned) and not touches_ice(loose + (0, CUBE_C / 2, 0), loose, turned)
     dipped = state((PX, PY + 0.05, LEVEL - 0.03), _rot_x(np.radians(60)))
     assert below_rim_in_pan(glass_points(dipped))
     # layout: the glass and the scoop stand clear of the pan, the cube fits the glass and the scoop
     assert GLASS_XY[1] + G_RT < PY - PAN_W / 2 - PAN_T - 20 * MM
     assert SCOOP_XY[1] + SC_W / 2 < GLASS_XY[1] - G_RT - 20 * MM
-    assert CUBE_L < 2 * (G_RB - G_T) and CUBE_L < SC_W - 2 * SHELL
+    assert CUBE_C < 2 * (G_RT - G_T) - 10 * MM and CUBE_C < SC_W - 2 * SHELL  # a cube goes in flat through the mouth
     # the hand stays outside the pan's walls while the scoop digs (it holds the handle 18 cm behind the basket)
     import tiltkit
 

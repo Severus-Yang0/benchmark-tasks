@@ -37,6 +37,7 @@ class Ice(Box):
     combine: str = "min"
     color: Color = (0.86, 0.93, 0.97)
     seed: int = 0
+    layered: bool = False  # lattice: long cubes packed lengthwise, each layer turned a quarter turn on the one below
     start_file: str | None = None
     solver_iters: int = 8
 
@@ -72,6 +73,8 @@ def lattice(s: Ice) -> tuple[np.ndarray, np.ndarray]:
     random about z and flipped at random."""
     rng = np.random.default_rng(s.seed)
     prof = np.asarray(s.profile, float)
+    if s.layered:
+        return _layered(s, rng, prof)
     span = max(s.length, np.ptp(prof[:, 0]))
     cell = np.array([span + 4e-3, span + 4e-3, np.ptp(prof[:, 1]) + 6e-3])
     lo = np.asarray(s.pos, float) - np.asarray(s.size, float) / 2 + cell / 2
@@ -87,6 +90,30 @@ def lattice(s: Ice) -> tuple[np.ndarray, np.ndarray]:
         qx = np.array([1.0, 0.0, 0.0, 0.0]) if f else np.array([0.0, 0.0, 0.0, 1.0])
         q.append(_qmul(qz, qx))
     return p, np.array(q)
+
+
+def _layered(s: Ice, rng, prof) -> tuple[np.ndarray, np.ndarray]:
+    """The lattice for long cubes: in each layer the cubes lie side by side, their flat sides (the profile's y) along
+    one axis, turned up to 15 degrees either way, flipped at random; each layer a quarter turn on the one below."""
+    jitter = np.radians(15)
+    a, b = np.ptp(prof[:, 0]), s.length  # the cube's long and short sides seen from above
+    long_ = a * np.cos(jitter) + b * np.sin(jitter) + 4e-3
+    short = a * np.sin(jitter) + b * np.cos(jitter) + 4e-3
+    dz = np.ptp(prof[:, 1]) + 6e-3
+    lo = np.asarray(s.pos, float) - np.asarray(s.size, float) / 2
+    hi = np.asarray(s.pos, float) + np.asarray(s.size, float) / 2
+    p, q = [], []
+    for k, z in enumerate(np.arange(lo[2] + dz / 2, hi[2] - dz / 2 + 1e-9, dz)):
+        cx, cy = (short, long_) if k % 2 == 0 else (long_, short)  # the flat side along y, then along x
+        base = 0.0 if k % 2 == 0 else np.pi / 2
+        for x in np.arange(lo[0] + cx / 2, hi[0] - cx / 2 + 1e-9, cx):
+            for y in np.arange(lo[1] + cy / 2, hi[1] - cy / 2 + 1e-9, cy):
+                yaw = base + rng.uniform(-jitter, jitter) + np.pi * rng.integers(0, 2)
+                qz = np.array([0.0, 0.0, np.sin(yaw / 2), np.cos(yaw / 2)])
+                qx = np.array([1.0, 0.0, 0.0, 0.0]) if rng.integers(0, 2) else np.array([0.0, 0.0, 0.0, 1.0])
+                p.append((x, y, z))
+                q.append(_qmul(qz, qx))
+    return np.array(p), np.array(q)
 
 
 def _qmul(a, b):
