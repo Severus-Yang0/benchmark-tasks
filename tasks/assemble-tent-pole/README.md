@@ -1,4 +1,4 @@
-# Assemble a folded shock-corded tent pole: swing each end section round its joint against the cord's pull and seat both joints
+# Assemble a folded shock-corded tent pole: swing each end section round against the cord's pull and seat both joints
 
 A three-section shock-corded tent pole lies folded on the table, as it comes out of its bag: the middle section across
 the table, the two end sections folded back beside it at their joints, the elastic cord inside pulling every joint
