@@ -69,15 +69,15 @@ def Xform "powerpac"
             }
         }
 
-        def Material "disp_run"
+        def Material "display"
         {
-            token outputs:surface.connect = </powerpac/Looks/disp_run/Shader.outputs:surface>
+            token outputs:surface.connect = </powerpac/Looks/display/Shader.outputs:surface>
 
             def Shader "Shader"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </powerpac/Looks/disp_run/tex.outputs:rgb>
+                color3f inputs:emissiveColor.connect = </powerpac/Looks/display/tex.outputs:rgb>
                 token outputs:surface
             }
 
@@ -91,41 +91,24 @@ def Xform "powerpac"
             def Shader "tex"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./powerpac_disp_run.png@
-                float4 inputs:scale = (3, 3, 3, 1)
+                asset inputs:file = @./powerpac_display.png@
+                float4 inputs:scale = (0.8, 0.8, 0.8, 1)
                 token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </powerpac/Looks/disp_run/st.outputs:result>
+                float2 inputs:st.connect = </powerpac/Looks/display/st.outputs:result>
                 color3f outputs:rgb
             }
         }
 
-        def Material "disp_stop"
+        def Material "segment_lit"
         {
-            token outputs:surface.connect = </powerpac/Looks/disp_stop/Shader.outputs:surface>
+            token outputs:surface.connect = </powerpac/Looks/segment_lit/Shader.outputs:surface>
 
             def Shader "Shader"
             {
                 uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0, 0, 0)
-                color3f inputs:emissiveColor.connect = </powerpac/Looks/disp_stop/tex.outputs:rgb>
+                color3f inputs:diffuseColor = (1, 0.017744508, 0.0094232075)
+                color3f inputs:emissiveColor = (14, 0.2484231, 0.1319249)
                 token outputs:surface
-            }
-
-            def Shader "st"
-            {
-                uniform token info:id = "UsdPrimvarReader_float2"
-                token inputs:varname = "st"
-                float2 outputs:result
-            }
-
-            def Shader "tex"
-            {
-                uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @./powerpac_disp_stop.png@
-                float4 inputs:scale = (3, 3, 3, 1)
-                token inputs:sourceColorSpace = "sRGB"
-                float2 inputs:st.connect = </powerpac/Looks/disp_stop/st.outputs:result>
-                color3f outputs:rgb
             }
         }
 
@@ -298,14 +281,14 @@ def Xform "powerpac"
         uniform token subdivisionScheme = "none"
     }
 
-    def Mesh "disp_run" (
+    def Mesh "display" (
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
         uniform bool doubleSided = 1
         int[] faceVertexCounts = [4]
         int[] faceVertexIndices = [0, 1, 2, 3]
-        rel material:binding = </powerpac/Looks/disp_run>
+        rel material:binding = </powerpac/Looks/display>
         point3f[] points = [(-0.1256, 0.018, 0.0195), (-0.1256, 0.018, -0.0025), (-0.1256, -0.022, -0.0025), (-0.1256, -0.022, 0.0195)]
         texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
             interpolation = "faceVarying"
@@ -313,15 +296,315 @@ def Xform "powerpac"
         uniform token subdivisionScheme = "none"
     }
 
-    def Mesh "disp_stop" (
+    def Mesh "seg_0a" (
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
         uniform bool doubleSided = 1
         int[] faceVertexCounts = [4]
         int[] faceVertexIndices = [0, 1, 2, 3]
-        rel material:binding = </powerpac/Looks/disp_stop>
-        point3f[] points = [(-0.1256, 0.018, 0.0195), (-0.1256, 0.018, -0.0025), (-0.1256, -0.022, -0.0025), (-0.1256, -0.022, 0.0195)]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0135, 0.016375), (-0.1257, 0.0135, 0.015), (-0.1257, 0.0075, 0.015), (-0.1257, 0.0075, 0.016375)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_0g" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0135, 0.00925), (-0.1257, 0.0135, 0.007875), (-0.1257, 0.0075, 0.007875), (-0.1257, 0.0075, 0.00925)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_0d" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0135, 0.002125), (-0.1257, 0.0135, 0.00075), (-0.1257, 0.0075, 0.00075), (-0.1257, 0.0075, 0.002125)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_0f" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.014875, 0.015), (-0.1257, 0.014875, 0.00925), (-0.1257, 0.0135, 0.00925), (-0.1257, 0.0135, 0.015)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_0b" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0075, 0.015), (-0.1257, 0.0075, 0.00925), (-0.1257, 0.006125, 0.00925), (-0.1257, 0.006125, 0.015)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_0e" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.014875, 0.007875), (-0.1257, 0.014875, 0.002125), (-0.1257, 0.0135, 0.002125), (-0.1257, 0.0135, 0.007875)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_0c" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0075, 0.007875), (-0.1257, 0.0075, 0.002125), (-0.1257, 0.006125, 0.002125), (-0.1257, 0.006125, 0.007875)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_1a" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0025625, 0.016375), (-0.1257, 0.0025625, 0.015), (-0.1257, -0.0034375, 0.015), (-0.1257, -0.0034375, 0.016375)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_1g" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0025625, 0.00925), (-0.1257, 0.0025625, 0.007875), (-0.1257, -0.0034375, 0.007875), (-0.1257, -0.0034375, 0.00925)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_1d" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0025625, 0.002125), (-0.1257, 0.0025625, 0.00075), (-0.1257, -0.0034375, 0.00075), (-0.1257, -0.0034375, 0.002125)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_1f" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0039375, 0.015), (-0.1257, 0.0039375, 0.00925), (-0.1257, 0.0025625, 0.00925), (-0.1257, 0.0025625, 0.015)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_1b" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.0034375, 0.015), (-0.1257, -0.0034375, 0.00925), (-0.1257, -0.0048125, 0.00925), (-0.1257, -0.0048125, 0.015)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_1e" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, 0.0039375, 0.007875), (-0.1257, 0.0039375, 0.002125), (-0.1257, 0.0025625, 0.002125), (-0.1257, 0.0025625, 0.007875)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_1c" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.0034375, 0.007875), (-0.1257, -0.0034375, 0.002125), (-0.1257, -0.0048125, 0.002125), (-0.1257, -0.0048125, 0.007875)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_2a" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.008375, 0.016375), (-0.1257, -0.008375, 0.015), (-0.1257, -0.014375, 0.015), (-0.1257, -0.014375, 0.016375)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_2g" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.008375, 0.00925), (-0.1257, -0.008375, 0.007875), (-0.1257, -0.014375, 0.007875), (-0.1257, -0.014375, 0.00925)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_2d" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.008375, 0.002125), (-0.1257, -0.008375, 0.00075), (-0.1257, -0.014375, 0.00075), (-0.1257, -0.014375, 0.002125)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_2f" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.007, 0.015), (-0.1257, -0.007, 0.00925), (-0.1257, -0.008375, 0.00925), (-0.1257, -0.008375, 0.015)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_2b" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.014375, 0.015), (-0.1257, -0.014375, 0.00925), (-0.1257, -0.01575, 0.00925), (-0.1257, -0.01575, 0.015)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_2e" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.007, 0.007875), (-0.1257, -0.007, 0.002125), (-0.1257, -0.008375, 0.002125), (-0.1257, -0.008375, 0.007875)]
+        texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
+            interpolation = "faceVarying"
+        )
+        uniform token subdivisionScheme = "none"
+    }
+
+    def Mesh "seg_2c" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = 1
+        int[] faceVertexCounts = [4]
+        int[] faceVertexIndices = [0, 1, 2, 3]
+        rel material:binding = </powerpac/Looks/segment_lit>
+        point3f[] points = [(-0.1257, -0.014375, 0.007875), (-0.1257, -0.014375, 0.002125), (-0.1257, -0.01575, 0.002125), (-0.1257, -0.01575, 0.007875)]
         texCoord2f[] primvars:st = [(0, 1), (0, 0), (1, 0), (1, 1)] (
             interpolation = "faceVarying"
         )
