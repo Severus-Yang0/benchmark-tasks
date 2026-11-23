@@ -1,0 +1,23 @@
+{
+  "title": "Assemble a folded shock-corded tent pole: swing each end section round its joint against the cord's pull and seat both joints",
+  "category": "Societal relatability",
+  "keywords": [
+    "tent pole",
+    "shock cord",
+    "camping",
+    "bimanual",
+    "unfolding",
+    "elastic coupling",
+    "insertion",
+    "linked sections"
+  ],
+  "instruction": "Assemble the folded tent pole: unfold it and push both joints fully home, then let go of the pole.",
+  "context": "Dome and tunnel tents go up on shock-corded poles, and pitching one starts with unfolding each pole from its bundle and seating every joint (over 52 million North American households camped in 2025, KOA 2026 Camping & Outdoor Hospitality Report). Makers warn that joints not fully pushed together put extra strain on the connection and may cause the pole to fail (Terra Nova, Pole Care and Maintenance). The work is physical: the elastic cord pulls every joint together all the time (about 4.6 N), so a 20 g section swung round its fold is dragged at its end the whole way; one hand has to hold the middle section still so the joint already made is not pulled apart; and an insert goes home only once it is in line with its socket (8.3 mm in 8.5 mm).",
+  "setup": "Positions in cm from the midpoint between the two arm bases (x forward, y to the robot's left); heights above the table top. A three-section DAC Featherlite NSL 9 mm aluminium tent pole (golden anodised, 7001 alloy), 1.20 m assembled, lies folded on the table: each section is a 40 cm tube, 9.0 mm outside, 7.8 mm inside; a socket section's first 35 mm is widened to 9.5 mm outside, 8.5 mm inside; an insert section has a silver aluminium insert, 8.3 mm outside, 6.3 mm inside, standing 30 mm out of its tube's end. Section 1 (endpiece with insert, 19.5 g), section 2 (center piece: socket at one end, insert at the other, 19.8 g), section 3 (endpiece with socket, 16.7 g). A 3 mm polyester-covered shock cord, 84 cm long unstretched (70 % of the pole), runs through all three and is tied at both ends of the pole. Section 2 lies across the table along y, its socket's mouth at (30.0, -20.0), its insert's end at (30.0, 23.0). Section 1 is folded back beside it at joint 1, fanned 20 degrees away on the far side: its insert's end at (30.8, -20.4), beside section 2's mouth, and its capped end at (45.5, 20.0). Section 3 is folded back beside it at joint 2, fanned 15 degrees away on the far side: its socket's mouth at (30.9, 22.6), beside section 2's insert, and its capped end at (41.2, -16.0), crossing over section 1 and resting on it.",
+  "scoring": "Tools: a ruler and a 1 mm feeler gauge. Each joint is home if the insert is in its socket and the 1 mm feeler gauge does not go in between the two tube ends; started if at least 10 mm of the insert is in the socket (no more than 20 mm of it showing); otherwise open. Let go: no gripper within 3 cm of the pole. At the end: 1.0 if both joints are home and the robot has let go of the pole, held for 1 s; otherwise 0.4 for each joint home plus 0.2 for each joint started (0 if both are open).",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "reset_notes": "Pull both joints apart against the cord and lay the folded pole back as in the setup.",
+  "fidelity": "Rigid-body PhysX, 20 Hz control. The sections have the DAC NSL 9 mm sizes and listed weights; each insert fits its socket with 0.1 mm a side. The shock cord runs through the sections and across each joint with the tension of Marlow's 3 mm shock cord (9 N at 100 % stretch) cut to 70 % of the pole, as pole makers advise: about 3.9 N assembled, 4.6 N folded. Contacts are rigid; the tubes do not flex.",
+  "scores": "Dream-1 run: 0.0 (2,400 steps; both hands moved back and forth over the folded pole near its two folds but never took hold of a section; the pole stayed folded, both joints open); demo: 1.0 (reached at about 40 s, about 800 steps)",
+  "media": "M-6VW2VY"
+}
