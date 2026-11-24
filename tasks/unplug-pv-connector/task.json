@@ -18,6 +18,6 @@
   "run_limit": "1,600 steps (80 s at 20 Hz)",
   "reset_notes": "Plug the socket back in until both clips click into the windows, turn the isolator back to ON, lay the spanner back across the strut, fork towards the robot, pins down. About 1 minute.",
   "fidelity": "PhysX rigid bodies at real size. Socket on a slide along the plug's axis (out to 45 mm). Each clip on a radial slide with a spring (2,800 N/m, from a snap-fit formula); the pins ride a ramp on it. The latch (a stiff spring) opens once both clips are pressed in 0.8 mm. Plastic friction, seal drag, handle torque estimated. Plug, module, isolator fixed. No electricity: the arc is read from the isolator and the parting. Cables drawn without physics.",
-  "scores": "Dream-1 run: 0.0 (1,600 steps; the right arm went to the isolator and held its handle without turning it to OFF, the left arm reached towards the connector without picking up the spanner, and the connector stayed plugged in); demo: 1.0 (success at about 31 s). The same demo without turning the isolator off scores 0.",
+  "scores": "Dream-1 run: 0.0 (1,600 steps; it held the isolator handle without turning it OFF, did not pick up the spanner, and the connector stayed plugged in); demo: 1.0 (success at about 31 s). The same demo without turning the isolator off scores 0.",
   "media": "M-KVPNDW"
 }
