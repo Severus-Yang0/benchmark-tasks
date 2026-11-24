@@ -17,6 +17,10 @@ Sources
 - PV module: Canadian Solar CS6R-400MS-HL (datasheet v1.1C25: 1722 x 1134 x 35 mm, 22.4 kg, frame cross-section
   35 x 35 mm, 4 mm2 cable, 1100 / 1550 mm leads, MC4 connectors).
 - Strut channel: Unistrut P1000, 1-5/8 x 1-5/8 in (41.3 mm), the usual ground-mount purlin and post.
+- Locking clips: no published force. Each clip is taken as a constant-section cantilever, P = w h^3 E y / (4 L^3)
+  (Covestro "Snap-Fit Joints for Plastics: A Design Guide", cantilever equations), with E = 2.4 GPa (polycarbonate,
+  Covestro Makrolon 2405 datasheet; the MC4 insulation is PC/PA) and the clip's size measured off the datasheet
+  drawing (est.).
 """
 
 import math
@@ -31,33 +35,57 @@ AXIS_Y = 0.0
 AXIS_Z = 0.110
 X0 = 0.355  # the plug's front face (the mating line)
 PLUG_L = 62 * MM  # PV-KST4, front face to the back of its cap nut
-PLUG_FRONT_L = 37.8 * MM  # its flat-sided front sleeve (est.)
+PLUG_FRONT_L = 37.8 * MM  # its front sleeve (est.)
 PLUG_CAP_L = 18.7 * MM  # its cap nut (est.)
-WINDOW = (13.6 * MM, 25.0 * MM)  # the plug's two latch windows (+-y), from its front face (est.)
-WINDOW_HALF_IN = 7.0 * MM  # the sleeve's half-width inside, where the spanner's pins go in (est.)
+FLAT_HALF = 6.0 * MM  # the plug's front is flat-sided (+-y) up to its windows: where the spanner's fork and pins go (est.)
+FRONT_TOP_HALF, FRONT_CHAMFER_Z = 3.5 * MM, 5.5 * MM  # its cross-section: flats to +-5.5 mm, chamfered to a top 7 mm wide
+WINDOW = (15.0 * MM, 25.0 * MM)  # the plug's two latch windows (+-y), from its front face (est.)
+WINDOW_HALF_Z = 3.0 * MM  # the windows are 6 mm high (est.)
 SOCKET_L = 60 * MM  # PV-KBT4, tip of its contact tube to the back of its cap nut
 SOCKET_IN = 26 * MM  # how far its front goes into the plug when mated (est.)
 SOCKET_TIP_X = X0 + SOCKET_IN
 SOCKET_REAR_X = SOCKET_TIP_X - SOCKET_L  # 0.321
 SOCKET_TUBE = (8.6 * MM, 14.0 * MM)  # contact tube: diameter, length from the tip (est.)
-SOCKET_CLIPS = (12.0 * MM, 22.6 * MM)  # the two locking clips, from the tip (est.)
 SOCKET_BODY_END = 36.0 * MM  # the body ends and the thread starts, from the tip (est.)
 SOCKET_CAP = (42.0 * MM, SOCKET_L)  # its cap nut, from the tip (est.)
-SOCKET_MASS = 0.035  # the socket with 12 cm of 4 mm2 cable (est.)
-APART = 20 * MM  # full credit: the halves this far apart
+SOCKET_MASS = 0.035  # the socket (est.)
+# The socket's two locking clips, one in each window (mated), each on its own radial slide. A clip sits recessed in
+# its window, its outer face 1.8 mm below the plug's side, and starts with a ramp: the spanner's pin, pushed along the
+# connector beside the plug's flat front, rides up the ramp and presses the clip in. Profile (x from the plug's front
+# face, distance from the axis):
+CLIP_OUT = 7.6 * MM
+CLIP_PROFILE = ((15.0 * MM, 5.6 * MM), (15.0 * MM, 6.0 * MM), (19.0 * MM, CLIP_OUT), (25.0 * MM, CLIP_OUT),
+                (25.0 * MM, 5.6 * MM))  # the ramp rises from the plug's flats 1.6 mm over 4 mm (22 deg) (est.)
+CLIP_HALF_Z = 2.7 * MM
+PLASTIC_MU = (0.25, 0.20)  # static, dynamic: plastic sliding on plastic (the spanner's pins on the plug and clips) (est.)
+CLIP_MASS = 0.001
+CLIP_TRAVEL = 2.4 * MM  # how far a clip can be pressed in (the plug's bore presses them right in as the socket comes out)
+CLIP_RELEASE = 0.8 * MM  # pressed this far, its hook clears the window's edge (est.)
+# the clip as a cantilever: width (z), thickness, length (est. off the drawing); polycarbonate's modulus (datasheet)
+CLIP_W, CLIP_H, CLIP_LEN, E_PC = 5.4 * MM, 1.0 * MM, 10.5 * MM, 2.4e9
+CLIP_K = CLIP_W * CLIP_H ** 3 * E_PC / (4 * CLIP_LEN ** 3)  # N/m, about 2,400: 1.9 N at 0.8 mm
+APART = 30 * MM  # full credit: the socket drawn out 30 mm, its 26 mm front clear of the plug (fully separated)
 ARC = 3 * MM  # parted this far = contacts separated (an arc if the string is live)
 RACK_POST_X = 0.4757  # the rack post the module's lead is tied to (Unistrut, front face at 0.455)
+SLIDE = 45 * MM  # the socket's slide: it can be drawn out this far (the home-run cable's slack)
+# The home-run cable leaves the socket's cap nut along the axis. It is drawn fixed and starts inside the socket at
+# every point of the slide, so the socket slides along it as it is drawn out: straight towards the robot past the cap
+# nut's rear at the slide's end, then down to the table and along it to the isolator.
+CABLE_R = 3.0 * MM  # 4 mm2 PV cable, about 6 mm across
+CABLE_START_X = SOCKET_REAR_X + 9 * MM
+CABLE_STRAIGHT_TO = SOCKET_REAR_X - SLIDE - 6 * MM
 
 # -- the PV-MS spanner (MA270 ill. 1-3: used square to the connector like an open-end spanner, its fork round the
 # plug's front, the two unlocking pins on the fork's prongs pointing along the connector into the plug's windows).
 # Frame: x along it (the fork at -x, the cap-nut jaw at +x), pins on its -z face.
 TOOL = (120 * MM, 40 * MM, 4 * MM)  # length, width, thickness (listing)
 TOOL_MASS = 0.025  # half the two-piece set's 50 g
-FORK = (18.5 * MM, 12.0 * MM)  # the unlocking fork: slot width, depth from the end (est.)
-PIN = (3.0 * MM, 3.0 * MM, 10.0 * MM)  # each unlocking pin, at a prong's tip (est.)
-PIN_IN = 8.5 * MM  # each pin's inner face from the fork's centre line (est.)
+FORK = (12.6 * MM, 12.0 * MM)  # the unlocking fork: slot width (fits the plug's 12 mm flats), depth (est.)
+PIN = (3.0 * MM, 3.0 * MM, 8.0 * MM)  # each unlocking pin, at a prong's tip (est.)
+PIN_IN = FORK[0] / 2  # each pin's inner face, flush with its prong's: the pins slide along the plug's flats (est.)
 PIN_Y = PIN_IN + PIN[1] / 2
-PIN_X = -(TOOL[0] / 2 - PIN[0] / 2 - 0.5 * MM)  # the pins' centre line along the spanner
+# the pins' centre line along the spanner: on the connector's axis when the fork's closed end sits on the plug
+PIN_X = -(TOOL[0] / 2 - FORK[1] + D / 2)
 NUT_JAW = (15.5 * MM, 14.0 * MM)  # the open-end jaw for the cap nut at +x: width, depth (est.)
 # lying across a Unistrut on the table, fork end towards the robot, pins down in front of it
 STRUT = 41.3 * MM
